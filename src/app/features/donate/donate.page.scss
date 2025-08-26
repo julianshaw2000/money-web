@@ -1,0 +1,24 @@
+.donate-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.donate-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.mat-mdc-form-field {
+    width: 100%;
+}
+
+.button-row {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: flex-end;
+}

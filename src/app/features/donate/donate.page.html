@@ -1,0 +1,45 @@
+<div class="donate-container">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="donate-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" required />
+      <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid email</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Amount (GBP)</mat-label>
+      <input matInput formControlName="amount" type="number" min="1" required />
+      <mat-error *ngIf="form.get('amount')?.hasError('required')">Amount is required</mat-error>
+      <mat-error *ngIf="form.get('amount')?.hasError('min')">Minimum £0.01</mat-error>
+    </mat-form-field>
+
+    <mat-button-toggle-group formControlName="frequency" aria-label="Donation frequency">
+      <mat-button-toggle *ngFor="let freq of frequencies" [value]="freq">
+        {{ freq === 'one_time' ? 'One-time' : 'Monthly' }}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Message (optional)</mat-label>
+      <textarea matInput formControlName="message" rows="2"></textarea>
+    </mat-form-field>
+
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || submitting()">
+        <mat-progress-spinner *ngIf="submitting()" diameter="20" mode="indeterminate"></mat-progress-spinner>
+        <span *ngIf="!submitting()">Donate</span>
+      </button>
+    </div>
+  </form>
+
+  <mat-card *ngIf="lastDonation() as last" style="margin-top:2rem;">
+    <mat-card-title>Thank you for your donation!</mat-card-title>
+    <mat-card-content>
+      <div><strong>Email:</strong> {{ last.email }}</div>
+      <div><strong>Amount:</strong> £{{ (last.amountMinor / 100) | number:'1.2-2' }}</div>
+      <div><strong>Frequency:</strong> {{ last.frequency === 'one_time' ? 'One-time' : 'Monthly' }}</div>
+      <div *ngIf="last.message"><strong>Message:</strong> {{ last.message }}</div>
+    </mat-card-content>
+  </mat-card>
+</div>

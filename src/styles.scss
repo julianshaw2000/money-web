@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+// CSS Variables for spacing and typography
+:root {
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --font-size-base: 16px;
+    --font-size-lg: 20px;
+    --font-size-xl: 24px;
+    --color-bg: #fff;
+    --color-text: #222;
+    --color-primary: #1976d2;
+    --color-accent: #e91e63;
+    --color-contrast: #000;
+}
+
+// Responsive container
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+}
+
+// Focus ring for accessibility
+:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+// Accessible color contrast for backgrounds and text
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+// Example for high-contrast button
+.mat-mdc-button,
+.mat-mdc-raised-button {
+    color: var(--color-contrast);
+    background-color: var(--color-primary);
+}
