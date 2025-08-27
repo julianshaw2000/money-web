@@ -1,46 +1,107 @@
-// CSS Variables for spacing and typography
+// === GLOBAL CSS VARIABLES & BREAKPOINTS ===
 :root {
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 32px;
-    --font-size-base: 16px;
-    --font-size-lg: 20px;
-    --font-size-xl: 24px;
-    --color-bg: #fff;
-    --color-text: #222;
-    --color-primary: #1976d2;
-    --color-accent: #e91e63;
-    --color-contrast: #000;
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --radius: 12px;
+  --fs-300: clamp(0.95rem, 1vw + .6rem, 1.05rem);
+  --fs-600: clamp(1.4rem, 2.5vw + .8rem, 2.2rem);
+  --fs-800: clamp(1.8rem, 3.2vw + 1rem, 3rem);
+  --color-bg: #fff;
+  --color-text: #222;
+  --color-primary: #1976d2;
+  --color-accent: #e91e63;
+  --color-contrast: #000;
 }
 
-// Responsive container
+$breakpoints: (
+  xs: 0,
+  sm: 600px,
+  md: 960px,
+  lg: 1280px,
+  xl: 1920px
+);
+
+@mixin respond($bp) {
+  @media (min-width: map-get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+// === UTILITIES ===
 .container {
-    width: 100%;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: var(--spacing-md);
-    padding-right: var(--spacing-md);
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
 }
 
-// Focus ring for accessibility
+.stack>*+* {
+  margin-top: var(--space-2);
+}
+
+img,
+picture {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+// === HERO HELPERS ===
+.hero {
+  min-height: 65svh;
+  position: relative;
+  display: grid;
+  place-items: center;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    filter: saturate(.95);
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .35), rgba(0, 0, 0, .15));
+  }
+
+  &__content {
+    position: relative;
+    text-align: center;
+    padding: clamp(1rem, 4vw, 3rem);
+  }
+}
+
+@include respond(md) {
+  .hero {
+    min-height: 75svh;
+  }
+}
+
+// === ACCESSIBILITY ===
 :focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
-// Accessible color contrast for backgrounds and text
 body {
-    background: var(--color-bg);
-    color: var(--color-text);
-    font-size: var(--font-size-base);
-    font-family: 'Roboto', Arial, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--fs-300);
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
-// Example for high-contrast button
 .mat-mdc-button,
 .mat-mdc-raised-button {
-    color: var(--color-contrast);
-    background-color: var(--color-primary);
+  color: var(--color-contrast);
+  background-color: var(--color-primary);
 }

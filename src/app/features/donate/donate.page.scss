@@ -1,16 +1,29 @@
 .donate-container {
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
+    width: 100%;
+    max-width: 480px;
+    margin: var(--space-4) auto;
+    padding: var(--space-3);
     background: #fff;
-    border-radius: 12px;
+    border-radius: var(--radius);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
 }
 
 .donate-form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+    display: grid;
+    gap: var(--space-2);
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+    .donate-form {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3);
+    }
+
+    .donate-form .button-row {
+        grid-column: span 2;
+        justify-content: flex-end;
+    }
 }
 
 .mat-mdc-form-field {
@@ -19,6 +32,13 @@
 
 .button-row {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--space-2);
     justify-content: flex-end;
+    margin-top: var(--space-2);
+}
+
+button[mat-raised-button] {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: var(--fs-300);
 }

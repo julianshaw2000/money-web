@@ -1,8 +1,8 @@
 
 import { Routes } from '@angular/router';
-import { IMPACT_ROUTES } from './features/impact/impact.routes';
-import { DONATE_ROUTES } from './features/donate/donate.routes';
 import { DonatehomeComponent } from './features/donatehome/donatehome.component';
+import { PaymentComponent } from './features/payment/payment.component';
+import { ImpactComponent } from './features/impact/impact.component';
 
 export const routes: Routes = [
   // {
@@ -15,6 +15,8 @@ export const routes: Routes = [
     loadChildren: () => import('./features/donate/donate.routes').then(m => m.DONATE_ROUTES),
   },
 
+  { path: 'payment', component: PaymentComponent },
+  { path: 'impact', component: ImpactComponent },
   { path: '', component: DonatehomeComponent },
 
   // Optionally, add a wildcard route for 404s

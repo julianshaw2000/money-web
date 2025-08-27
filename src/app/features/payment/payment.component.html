@@ -1,0 +1,58 @@
+
+
+<form [formGroup]="form" class="payment-form" autocomplete="on" novalidate>
+  <h1 class="payment-title">Complete Your Payment</h1>
+  <div class="payment-section">
+    <h2 class="section-title">Contact</h2>
+    <mat-form-field appearance="fill" class="full-width darker-fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" required autocomplete="email" />
+      <mat-hint>We'll send your receipt here</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="payment-section">
+    <h2 class="section-title">Card Details</h2>
+    <mat-form-field appearance="fill" class="full-width card-field">
+      <mat-label>Card Number</mat-label>
+      <input matInput type="text" inputmode="numeric" pattern="[0-9 ]*" maxlength="19" placeholder="1234 5678 9012 3456" autocomplete="cc-number" required />
+      <span matSuffix>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" class="card-icon" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="card-icon" />
+      </span>
+    </mat-form-field>
+    <div class="payment-row">
+      <mat-form-field appearance="fill" class="expiry-field">
+        <mat-label>Expiry</mat-label>
+        <input matInput type="text" inputmode="numeric" maxlength="5" placeholder="MM/YY" autocomplete="cc-exp" required />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="cvc-field">
+        <mat-label>CVC</mat-label>
+        <input matInput type="text" inputmode="numeric" maxlength="4" placeholder="CVC" autocomplete="cc-csc" required />
+        <!-- <mat-hint>3 or 4 digits</mat-hint> -->
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="postal-field">
+        <mat-label>Postal Code</mat-label>
+        <input matInput type="text" maxlength="12" placeholder="Postal Code" autocomplete="postal-code" required />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="payment-section">
+    <h2 class="section-title">Billing</h2>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Name on Card</mat-label>
+      <input matInput type="text" formControlName="name" required autocomplete="cc-name" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" min="1" formControlName="amount" required autocomplete="off" />
+      <span matSuffix>US$</span>
+    </mat-form-field>
+  </div>
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Pay Securely</button>
+  </div>
+  <div class="payment-trust">
+    <img src="https://placehold.co/100x40?text=Stripe" alt="Stripe PCI" loading="lazy" />
+    <span class="payment-trust-text">Payments are encrypted and secure</span>
+  </div>
+</form>

@@ -1,2 +1,50 @@
 
-<router-outlet />
+<mat-sidenav-container class="app-shell" autosize>
+	<mat-sidenav #drawer
+		[mode]="layout.isHandset() ? 'over' : 'side'"
+		[opened]="!layout.isHandset()"
+		(closedStart)="drawer.close()">
+		<div class="sidenav-favicon" style="display:flex;justify-content:center;align-items:center;padding:1.5rem 0 1rem 0;">
+			<img src="favicon.ico" alt="Charity Site Logo" width="64" height="64" style="display:block;" />
+		</div>
+    <nav class="sidenav-nav">
+      <a mat-list-item routerLink="/" (click)="layout.isHandset() && drawer.close()" class="sidenav-link">Home</a>
+      <a mat-list-item routerLink="/payment" (click)="layout.isHandset() && drawer.close()" class="sidenav-link">Donate</a>
+      <a mat-list-item routerLink="/impact" (click)="layout.isHandset() && drawer.close()" class="sidenav-link">Impact</a>
+    </nav>
+    <style>
+    .sidenav-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0 1rem;
+    }
+    .sidenav-link {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--primary-text-color, #333);
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sidenav-link:hover,
+    .sidenav-link:focus {
+      background: var(--primary-hover-bg, #f0f0f0);
+      color: var(--primary-color, #1976d2);
+      outline: none;
+    }
+    </style>
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<mat-toolbar color="primary" class="app-toolbar">
+			<button mat-icon-button (click)="drawer.toggle()" *ngIf="layout.isHandset()" aria-label="Open menu">
+				<mat-icon>menu</mat-icon>
+			</button>
+			<span class="brand">Yahsara Abaantu</span>
+		</mat-toolbar>
+		<main>
+			<router-outlet />
+		</main>
+	</mat-sidenav-content>
+</mat-sidenav-container>

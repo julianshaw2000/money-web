@@ -13,20 +13,20 @@
   </button>
 </header> -->
 
-<section class="hero">
-  <div class="hero-copy">
-    <h1>
-      Learning Lights the Continent <br>
-      Please help our charity <br>
-      Donate now
-
-    </h1>
-    <div class="lines">
+<section class="hero" role="banner">
+  <picture>
+    <source type="image/webp" srcset="assets/images/kids.webp 640w, assets/images/kids.webp 1280w, assets/images/kids.webp 1920w" sizes="100vw" />
+    <!-- <img class="hero__bg" src="assets/images/kids.png" alt="Children smiling and learning" loading="lazy" decoding="async" /> -->
+  </picture>
+  <div class="hero__overlay"></div>
+  <div class="hero__content container">
+    <h1 style="font-size:var(--fs-800);font-weight:bold;">Connecting African Youth and the Diaspora <br> for African Development</h1>
+    <p style="font-size:var(--fs-600);margin-bottom:var(--space-3);">Please help our charity<br>Donate now</p>
+    <div class="lines" aria-hidden="true">
       <span></span><span></span><span></span>
     </div>
-  </div>
-
-  <div class="box-wrap">
-    <app-donateaction></app-donateaction>
+    <div class="box-wrap">
+      <app-donateaction></app-donateaction>
+    </div>
   </div>
 </section>
